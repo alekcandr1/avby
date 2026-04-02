@@ -1,0 +1,75 @@
+﻿<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Личный кабинет - ООО «ОООЛЕД-дисплей»</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="header">
+    <a class="header__logo" href="#">
+        <img src="assets/images/logo.svg" alt="Логотип" />
+    </a>
+    <span class="header__company">ООО «ОООЛЕД-дисплей»</span>
+</header>
+<main class="main">
+    <section class="cards">
+        <article class="cards__item cards__item_supervisor">
+            <img class="cards__media" src="assets/images/supervizer.jpg" alt="Фото супервайзера" />
+            <div class="cards__content">
+                <div class="cards__head">
+                    <p class="cards__title">Константинопольский К.</p>
+                    <p class="cards__subtitle">супервайзер</p>
+                </div>
+                <p class="cards__status">
+                    <span class="cards__status-indicator cards__status-indicator_green"></span>
+                    online
+                </p>
+            </div>
+        </article>
+
+        <article class="cards__item cards__item_messages">
+            <div class="cards__content">
+                <div class="cards__head">
+                    <p class="cards__title">24 новых сообщения</p>
+                    <p class="cards__subtitle">не забудьте проверить почту перед выходом</p>
+                </div>
+            </div>
+            <img class="cards__media" src="assets/images/messages.svg" alt="" />
+        </article>
+    </section>
+
+    <section class="catalog">
+        <div class="catalog__head">
+            <h4 class="catalog__title" id="ads-count">0 объявлений</h4>
+            <a class="catalog__add-link" href="#">Добавить новое</a>
+        </div>
+
+        <div class="catalog__table-wrap">
+            <table class="catalog-table">
+                <thead class="catalog-table__head">
+                <tr>
+                    <th></th>
+                    <th>Фото и название</th>
+                    <th>Артикул</th>
+                    <th>Дата подачи</th>
+                    <th>Состояние</th>
+                    <th>Цена</th>
+                    <th>Статус</th>
+                    <th>Просмотры объявления</th>
+                    <th>Просмотры телефона</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody class="catalog-table__body" id="ads-table-body"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
