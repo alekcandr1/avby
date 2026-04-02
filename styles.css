@@ -100,6 +100,8 @@ img {
 
 .cards__item_messages {
     flex: 0 0 377px;
+    width: 377px;
+    position: relative;
 }
 
 .cards__item_messages .cards__content {
@@ -123,6 +125,10 @@ img {
     display: flex;
     flex-direction: column;
     gap: 4px;
+}
+
+.cards__item_messages .cards__head {
+    max-width: 207px;
 }
 
 .cards__title {
@@ -176,9 +182,21 @@ img {
 
 .cards__item_messages {
     background-image: radial-gradient(120% 120% at 60% 30%, #0082FF33 0%, #0082FF00 100%);
-    justify-content: space-between;
-    gap: 10px;
+    justify-content: flex-start;
+    gap: 0;
     padding: 12px;
+}
+
+.cards__item_messages .cards__content {
+    width: 207px;
+}
+
+.cards__item_messages .cards__media {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 85%;
 }
 
 /* Catalog */
@@ -786,7 +804,13 @@ img {
 
     .cards__item_messages {
         flex-basis: auto;
+        width: 100%;
     }
+
+    .cards__item_messages .cards__head {
+        max-width: 100%;
+    }
+
 }
 
 @media (max-width: 700px) {
