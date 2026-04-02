@@ -2,11 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, target-densityDpi=device-dpi" />
     <title>Личный кабинет - ООО «ОООЛЕД-дисплей»</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -39,14 +40,14 @@
                     <p class="cards__subtitle">не забудьте проверить почту перед выходом</p>
                 </div>
             </div>
-            <img class="cards__media" src="assets/images/messages.svg" alt="" />
+            <img class="cards__media" src="assets/images/messages.svg" alt="Иконка новых сообщений" />
         </article>
     </section>
 
     <section class="catalog">
         <div class="catalog__head">
-            <h4 class="catalog__title" id="ads-count">0 объявлений</h4>
-            <a class="catalog__add-link" href="#">Добавить новое</a>
+            <h1 class="catalog__title" id="ads-count">0 объявлений</h1>
+            <a class="catalog__add-link" href="#" id="open-add-modal">Добавить новое</a>
         </div>
 
         <div class="catalog__table-wrap">
@@ -69,7 +70,114 @@
             </table>
         </div>
     </section>
+    <div class="bulk-actions-sticky">
+        <div class="bulk-actions" id="bulk-actions">
+            <span class="bulk-actions__label" id="bulk-actions-label">Выберите объявления</span>
+            <div class="bulk-actions__panel">
+                <button class="bulk-actions__btn" type="button" data-bulk-action="publish">Опубликовать</button>
+                <button class="bulk-actions__btn" type="button" data-bulk-action="pause">На паузу</button>
+                <button class="bulk-actions__btn bulk-actions__btn_delete" type="button" data-bulk-action="delete">
+                    Удалить
+                </button>
+            </div>
+        </div>
+    </div>
 </main>
+<div class="add-modal-overlay" id="add-modal-overlay">
+    <div class="add-modal">
+        <div class="add-modal__top">
+            <button class="add-modal__close" type="button" id="close-add-modal">
+                <img src="assets/icons/close.svg" alt="Закрыть" />
+            </button>
+        </div>
+
+        <h2 class="add-modal__title">Добавить новое объявление</h2>
+
+        <div class="add-modal__form-wrap">
+            <div class="add-modal__field add-modal__field_title">
+                <input class="add-modal__input" id="add-modal-title-input" type="text" placeholder="Заголовок" />
+                <p class="add-modal__error" id="add-modal-title-error">Введите заголовок</p>
+            </div>
+            <div class="add-modal__field add-modal__field_description">
+                <textarea class="add-modal__textarea" id="add-modal-description-input" placeholder="Описание товара"></textarea>
+                <p class="add-modal__error add-modal__error_description" id="add-modal-description-error">Введите описание</p>
+            </div>
+
+            <div class="add-modal__rating-row">
+                <span class="add-modal__rating-label">Оценка по отзывам:</span>
+                <div class="add-modal__stars" id="add-modal-stars">
+                    <button class="add-modal__star" type="button" data-star="1"></button>
+                    <button class="add-modal__star" type="button" data-star="2"></button>
+                    <button class="add-modal__star" type="button" data-star="3"></button>
+                    <button class="add-modal__star" type="button" data-star="4"></button>
+                    <button class="add-modal__star" type="button" data-star="5"></button>
+                </div>
+                <p class="add-modal__error add-modal__error_rating" id="add-modal-rating-error">Поставьте свою оценку</p>
+            </div>
+        </div>
+
+        <button class="add-modal__save" type="button" id="add-modal-save">Сохранить</button>
+    </div>
+</div>
+<template id="ad-row-template">
+    <tr>
+        <td class="catalog-table__checkbox-cell">
+            <input class="catalog-table__checkbox" type="checkbox" />
+        </td>
+        <td>
+            <label class="product">
+                <span class="product__photo js-photo-wrap">
+                    <img class="js-photo" src="" alt="Фото товара" />
+                </span>
+                <span class="product__text">
+                    <span class="product__name js-title"></span>
+                    <span class="product__meta js-article-number"></span>
+                </span>
+            </label>
+        </td>
+        <td class="js-article"></td>
+        <td class="js-submit-date"></td>
+        <td class="js-condition"></td>
+        <td>
+            <p class="price js-price-main"></p>
+            <p class="price__secondary js-price-secondary"></p>
+        </td>
+        <td><span class="status-icon js-status-icon"></span></td>
+        <td>
+            <div class="metric">
+                <img class="metric__icon" src="assets/icons/eye-open.svg" alt="Просмотры объявления" />
+                <span class="metric__value js-views"></span>
+            </div>
+        </td>
+        <td>
+            <div class="metric">
+                <img class="metric__icon" src="assets/icons/phone.svg" alt="Просмотры телефона" />
+                <span class="metric__value js-phone-views"></span>
+            </div>
+        </td>
+        <td>
+            <div class="table-actions-wrap">
+                <button class="table-actions" type="button">
+                    <img src="assets/icons/kebab.svg" alt="Действия" />
+                </button>
+                <div class="row-menu">
+                    <button class="row-menu__action" type="button" data-action="pause">
+                        <img src="assets/icons/pause.svg" alt="Пауза" />
+                        <span class="js-toggle-status-label">На паузу</span>
+                    </button>
+                    <button class="row-menu__action" type="button" data-action="edit">
+                        <img src="assets/icons/edit.svg" alt="Изменить" />
+                        <span>Изменить</span>
+                    </button>
+                    <button class="row-menu__action row-menu__action_delete" type="button" data-action="delete">
+                        <img src="assets/icons/delete.svg" alt="Удалить" />
+                        <span>Удалить</span>
+                    </button>
+                </div>
+            </div>
+        </td>
+    </tr>
+</template>
 <script src="script.js"></script>
 </body>
 </html>
